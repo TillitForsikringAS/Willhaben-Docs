@@ -1,12 +1,12 @@
 openapi: 3.0.0
   
 info:
-  title: Tillit OLX API
+  title: Tillit Willhaben API
   version: '1'
   description: 
     '
-    <a href="https://storage.googleapis.com/assets.tillit.eu/media/pdfs/Tillit-Tech-Overview-OLX.pdf">
-    <img height="200" src="https://storage.googleapis.com/assets.tillit.eu/media/images/Tillit-Tech-Overview-OLX.png"/>
+    <a href="https://storage.googleapis.com/assets.tillit.eu/media/pdfs/Tillit-Tech-Overview-Willhaben.pdf">
+    <img height="200" src="https://storage.googleapis.com/assets.tillit.eu/media/images/Tillit-Tech-Overview-Willhaben.png"/>
     </div>
     <br/>
     Technical integration - Overview
@@ -15,8 +15,8 @@ info:
   
   
 servers:
-  - url: https://dev.tillit.eu/api/olx
-  - url: https://www.tillit.eu/api/olx
+  - url: https://dev.tillit.eu/api/willhaben
+  - url: https://www.tillit.eu/api/willhaben
 components:
   securitySchemes:
     ApiKeyAuth:
@@ -31,7 +31,7 @@ paths:
       tags:
         - Insurance
       summary: Create insurance
-      description: Endpoint for activating the insurance. Should be called when a purchase is made. All prices are stated in zł.
+      description: Endpoint for activating the insurance. Should be called when a purchase is made. All prices are stated in euro.
       parameters:
         - in: header
           name: Authorization
@@ -40,7 +40,7 @@ paths:
             example: Token eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni
           required: true
       requestBody:
-        description: All prices are stated in zł.
+        description: All prices are stated in euro.
         content:
           application/json:
             schema:
@@ -70,27 +70,27 @@ paths:
                       description: The original price the item was advertised for.
                     ad_code:
                       type: string
-                      example: "601924026"
+                      example: "1632003660"
                     ad_url:
                       type: string
-                      example: "https://www.olx.pl/d/oferta/iphone-15-pro-max-256-gb-CID99-ID16sdMt.html"
+                      example: "https://www.willhaben.at/iad/kaufen-und-verkaufen/d/mac-mini-m4-16-gb-ram-256-gb-ssd-1632003660"
                     ad_details:
                       type: array
                       example:
                         - name: title
-                          text: "iphone-15-pro-max-256-gb"
+                          text: "Mac Mini M4 - 16 GB RAM, 256 GB SSD"
                         - name: category
-                          text: "Smartfony i telefony komórkowei"
+                          text: "PCs"
                         - name: sub_category
-                          text: "Electronics"
+                          text: "Computer / Tablets"
                         - name: description
-                          text: "W zestawie telefon, pudełko, etui z magsafe, etui z magsafe na smyczy, dwa nowe szkła prywatyzujące z adapterem do łatwiejszej aplikacji."
+                          text: "Verkaufe meinen Mac mini M4 mit 16 GB RAM und 256 GB SSD. Gekauft im März 2025, wurde nur ein paar Tage benutzt – nahezu neuwertig, keine Kratzer oder Gebrauchsspuren.Der iCloud-Account wurde bereits entfernt, Gerät ist zurückgesetzt und bereit für den neuen Besitzer.Preis ist verhandelbar.Abholung in Graz oder Versand möglich."
                         - name: ad_image_1
-                          text: https://example.com/images/image1.jpg
+                          text: https://cache.willhaben.at/mmo/0/163/200/3660_710995209.jpg
                         - name: ad_image_2
-                          text: https://example.com/images/image2.jpg
+                          text: https://cache.willhaben.at/mmo/0/163/200/3660_-1389107801.jpg
                         - name: other
-                          text: "example example example"
+                          text: "Custom data can be added"
                       items:
                         type: object
                         required:
@@ -112,15 +112,17 @@ paths:
                     shipping_price:
                       type: number
                       example: 5.99
-                      description: Shipping price in zł
+                      description: Shipping price in euro
                     payment_fee:
                       type: number
                       example: 15
-                      description: Payment fee in zł
+                      description: Payment fee in euro
                     products:
                       type: array
                       example:
                         - name: 14_DAYS_WARRANTY
+                          premium: 12
+                        - name: SHIPPING
                           premium: 12
                       items:
                         type: object
@@ -134,7 +136,7 @@ paths:
                             description: "[14_DAYS_WARRANTY]"
                           premium:
                             type: number
-                            description: Insurance premium in zł
+                            description: Insurance premium in euro
                 shipping:
                   type: object
                   required:
