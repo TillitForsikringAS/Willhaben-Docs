@@ -328,40 +328,4 @@ paths:
                 type: string
                 example: The provided transaction_id does not exist
           description: Descriptive message
-  /{transaction_id}/claim_url/ks:
-    get:
-      tags:
-        - Claim
-      summary: Get claim URL for customer service
-      description: Endpoint for getting a link to the claim form as marketplace customer service. Must be called in order to redirect the customer service user to Tillit claim form.
-      parameters:
-        - in: path
-          name: transaction_id
-          schema:
-            type: string
-            example: string
-          required: true
-        - in: header
-          name: Authorization
-          schema:
-            type: string
-            example: Token eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni
-          required: true
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  url:
-                    type: string
-                    example: https://dev.tillit.eu/sesame/login/?sesame=AAAAdgW70nQJJDzWoa1LulSK&next=/users/shipping_claim/?insurance_id=12
-        '400':
-          content:
-            application/json:
-              schema:
-                type: string
-                example: The provided transaction_id does not exist
-          description: Descriptive message
+  
